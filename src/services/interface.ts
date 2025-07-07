@@ -8,3 +8,20 @@ export interface Availability {
   status?: boolean;
   numWeek: number;
 }
+export interface GlobalInfo {
+  date: {
+    currentWeek: number;
+    currentYear: number;
+    currentDayOfWeek: number;
+    currentDate: string;
+  };
+}
+export interface BarberShop {
+  id_barberos?: string[];
+  name: string;
+  availability?: Availability[];
+  address: string;
+  phone: string;
+  description: string;
+  status?: boolean;
+}

@@ -3,17 +3,9 @@ import {
   readCollection,
   queryCollection
 } from '../firebase/firebaseServices.ts'
-import type { Availability } from './interface.ts'
+import type {BarberShop } from './interface.ts'
 
-export interface BarberShop {
-  id_barberos?: string[];
-  name: string;
-  availability: Availability[];
-  address: string;
-  phone: string;
-  description: string;
-  status?: boolean;
-}
+
 
 const getDayLabel = (dayNumber: number): string => {
   const dayMap = [
