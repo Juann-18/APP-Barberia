@@ -1,12 +1,23 @@
 import React from 'react'
 import type { BarberShop } from '../services/interface'
 import barberia from '../assets/barberia.jpg'
+import { useNavigate } from 'react-router-dom';
 
 interface CardBarberShopProps {
   barberShop: BarberShop
 }
 
 export const CardBarberShop: React.FC<CardBarberShopProps> = ({ barberShop }) => {
+  const navigate = useNavigate();
+
+  const handledClick = () =>{
+    navigate('/cita',{
+      state:{
+        barberShop
+      }
+    })
+  }
+
   return (
     <div className='bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300'>
       {/* Imagen más pequeña */}
@@ -27,7 +38,8 @@ export const CardBarberShop: React.FC<CardBarberShopProps> = ({ barberShop }) =>
           <p>{barberShop.description}</p>
         </div>
         
-        <button className='mt-2 w-full bg-red-50 hover:bg-blue-600 text-white py-1 px-3 rounded text-xs font-medium transition-colors duration-300'>
+        <button className='mt-2 w-full bg-red-50 hover:bg-blue-600 text-white py-1 px-3 rounded text-xs font-medium transition-colors duration-300'
+        onClick={handledClick}>
           Contactar
         </button>
       </div>

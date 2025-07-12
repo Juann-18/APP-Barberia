@@ -1,5 +1,6 @@
 import { Route, BrowserRouter, Routes } from 'react-router-dom'
 import { Index } from './pages/Index'
+import { AppointmenrPage } from './pages/AppointmenrPage'
 import './App.css'
 
 function App() {
@@ -9,6 +10,8 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path = '/' element={<Index/>} />
+          <Route path = '/cita' element={<AppointmenrPage/>} />
+          {/* Puedes agregar más rutas aquí */}
         </Routes>
       
       </BrowserRouter>

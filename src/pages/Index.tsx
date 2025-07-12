@@ -1,5 +1,5 @@
 import { Header } from "../components/Header"
-import { Container } from "../components/container";
+import { Container } from "../components/Container";
 import { useEffect, useState } from "react"
 import { getBarberShop } from "../services/barberiaServices";
 import type{ GlobalInfo, BarberShop } from "../services/interface";
