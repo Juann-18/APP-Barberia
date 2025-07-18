@@ -1,7 +1,4 @@
 export interface Availability {
-  id: string;
-  fecha?: string;
-  id_barberia: string;
   day?: string;
   hours?: string[];
   busy_hours?: string[];
@@ -17,11 +14,22 @@ export interface GlobalInfo {
   };
 }
 export interface BarberShop {
+  id_barberia?: string;
   id_barberos?: string[];
   name: string;
-  availability?: Availability[];
   address: string;
   phone: string;
   description: string;
   status?: boolean;
+}
+
+export interface Barber {
+  id?: string;
+  id_barberShop?: string;
+  name: string;
+  email: string;
+  phone: string;
+  status?: boolean;
+  availability?: Availability[];
+
 }

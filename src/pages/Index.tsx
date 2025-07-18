@@ -2,39 +2,30 @@ import { Header } from "../components/Header"
 import { Container } from "../components/Container";
 import { useEffect, useState } from "react"
 import { getBarberShop } from "../services/barberiaServices";
-import type{ GlobalInfo, BarberShop } from "../services/interface";
-import dayjs from "dayjs";
-import isoWeek from "dayjs/plugin/isoWeek";
-dayjs.extend(isoWeek);
+import type{ BarberShop } from "../services/interface";
+import { getBarberById } from "../services/barberoServices";
+
 
 export const Index = () => {
-  const now = dayjs();
+
   const [barberShops, setBarberShops] = useState<BarberShop[]>([]);
 
-  const value: GlobalInfo = {
-    date: {
-      currentWeek: now.isoWeek(),
-      currentYear: now.isoWeekYear(),
-      currentDayOfWeek: now.isoWeekday(),
-      currentDate: now.format("DD-MM-YYYY"),
-    },
-  };
+
+
 
   useEffect(()=> {
     const fetchBarberShops = async () => {
       try {
-        const barberShopsData = await getBarberShop(value.date.currentWeek, value.date.currentDayOfWeek);
+        const barber = await getBarberById("4A3xuLxKmCzOsYn8O9i1")
+        const barberShopsData = await getBarberShop();
         setBarberShops(barberShopsData)
-        console.log(barberShopsData); // Aquí sí verás los datos correctos
-        
-
+        console.log(barber);
       } catch (error) {
         console.error("Error fetching barber shops:", error);
       }
     };
-
     fetchBarberShops();
-  },[])
+  }, [])
 
   
 
