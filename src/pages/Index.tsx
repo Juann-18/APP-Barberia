@@ -3,7 +3,6 @@ import { Container } from "../components/Container";
 import { useEffect, useState } from "react"
 import { getBarberShop } from "../services/barberiaServices";
 import type{ BarberShop } from "../services/interface";
-import { getBarberById } from "../services/barberoServices";
 
 
 export const Index = () => {
@@ -16,10 +15,8 @@ export const Index = () => {
   useEffect(()=> {
     const fetchBarberShops = async () => {
       try {
-        const barber = await getBarberById("4A3xuLxKmCzOsYn8O9i1")
         const barberShopsData = await getBarberShop();
         setBarberShops(barberShopsData)
-        console.log(barber);
       } catch (error) {
         console.error("Error fetching barber shops:", error);
       }

@@ -37,8 +37,8 @@ export const getBarberShop = async (): Promise<BarberShop[]> => {
       barberShopsData.map(async (doc: any) => {
 
         return {
-          id_barberia: doc.docId, // Fallback to doc.id if id_barberia doesn't exist
-          id_barberos: doc.id_barberos,
+          id_barberShop: doc.docId, // Fallback to doc.id if id_barberia doesn't exist
+          id_barbers: doc.id_barbers,
           name: doc.name,
           address: doc.address,
           phone: doc.phone,

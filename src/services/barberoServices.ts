@@ -61,7 +61,6 @@ export const getBarberById = async (id: string, ): Promise<Barber | null> => {
     // Retornar el barbero con la disponibilidad agregada
     return {
       id: barberData.docId, // Assuming docId is the unique identifier
-      id_barbero: barberData.id_barbero ?? barberData.docId,
       name: barberData.name,
       availability: availability,
       phone: barberData.phone,

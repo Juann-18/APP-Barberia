@@ -15,7 +15,7 @@ export interface GlobalInfo {
 }
 export interface BarberShop {
   id_barberia?: string;
-  id_barberos?: string[];
+  id_barbers?: string[];
   name: string;
   address: string;
   phone: string;
