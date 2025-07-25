@@ -31,5 +31,15 @@ export interface Barber {
   phone: string;
   status?: boolean;
   availability?: Availability[];
+}
 
+export interface User { 
+  id?: string;
+  name: string;
+  lastName: string;
+  email: string;
+  phone: string;
+  password?: string;
+  faults: number;
+  status?: boolean;
 }
