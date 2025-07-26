@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { SegmentedButtons } from '../components/SegmentedButtons';
 import { FormUser  } from '../components/FormUser';
+import { FormBarber } from '../components/FormBarber';
 
 
 export const SignUp: React.FC = () => {
@@ -19,9 +20,16 @@ export const SignUp: React.FC = () => {
           segmented={segmented}
           onSegmentedChange={handleSegmentedChange}
         />
-        {segmented === 'user' && (
-          <FormUser/>
-        )}
+        <div>
+          {segmented === 'user' && (
+            <FormUser/>
+          )}
+        </div>
+        <div>
+          {segmented === 'barber' && (
+            <FormBarber/>
+          )}
+        </div>
         
         <p className="text-[#60758a] text-sm font-normal leading-normal pb-3 pt-1 px-4 text-center">By signing up, you agree to our Terms of Service and Privacy Policy</p>
       </div>

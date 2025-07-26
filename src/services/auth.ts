@@ -1,26 +1,13 @@
-import { db, auth } from "../firebase/config";
-import { createUserWithEmailAndPassword } from "firebase/auth";
-import { doc, setDoc } from "firebase/firestore";
+import { singUp, createDocument } from "../firebase/firebaseServices";
 import type { User } from "../services/interface";
+
 
 
 export const registerUser = async (user: User) => {
   try {
-    // Crear el usuario en Firebase Authentication
-    const userCredential = await createUserWithEmailAndPassword(auth, user.email, user.password || "");
-    const uid = userCredential.user.uid;
+    const uid = await singUp(user.email, user.password || "");  
 
-    // Guardar los datos del usuario en Firestore
-    await setDoc(doc(db, "users", uid), {
-      name: user.name,
-      lastName: user.lastName,
-      email: user.email,
-      phone: user.phone,
-      status: true,
-      faults: 0,
-      photoUrl: user.photoUrl || "",
-      statusUser: user.status || true
-    });
+    await createDocument("users",user, uid)
 
     return { success: true, uid };
   } catch (error) {

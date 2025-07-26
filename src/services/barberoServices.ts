@@ -1,7 +1,8 @@
 import {
   createDocument,
   getDocument,
-  readCollection // <-- Importa readCollection
+  readCollection,
+  singUp
 } from '../firebase/firebaseServices.ts' 
 import type { Barber } from './interface.ts'
 
@@ -23,7 +24,9 @@ export const createBarber = async (barber: Barber): Promise<string | undefined> 
     if (!barber || typeof barber !== "object") {
       throw new Error("Datos de barbero inválidos");
     }
-    const barberData = createDocument('barberos', barber)
+    const uid =  await singUp(barber.email, barber.password || "");
+  
+    const barberData = createDocument('barberos', barber, uid)
     if (!barberData) {
       throw new Error("Error al crear el barbero");
     }
@@ -62,6 +65,8 @@ export const getBarberById = async (id: string, ): Promise<Barber | null> => {
     return {
       id: barberData.docId, // Assuming docId is the unique identifier
       name: barberData.name,
+      lastName: barberData.lastName,
+      photoUrl: barberData.photoUrl ?? "", // Provide a default value if missing
       availability: availability,
       phone: barberData.phone,
       status: barberData.status,

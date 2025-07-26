@@ -27,8 +27,11 @@ export interface Barber {
   id?: string;
   id_barberShop?: string;
   name: string;
+  lastName: string;
   email: string;
   phone: string;
+  password?: string;
+  photoUrl?: string;
   status?: boolean;
   availability?: Availability[];
 }

@@ -118,12 +118,14 @@ export const FormUser: React.FC = () => {
           setValue={(value: string) => setUser({ ...user, phone: value })}
           placeholder="Phone number"
         />
-        <div>
-          <input type="file" accept="image/*" onChange={handleFileChange} />
+        <div className='flex justify-center items-center flex-col px-4 py-3'>
+
+          {!previewUrl && (<input type="file" accept="image/*" onChange={handleFileChange} />)}
+          
           {previewUrl && (
-            <div>
+            <div className='relative inline-block'>
               <p>Vista previa:</p>
-              <img src={previewUrl} alt="Preview" style={{ width: 200 }} />
+              <img src={previewUrl} alt="Preview" style={{ width: 200 }}  className='rounded-full w-32 h-32 object-cover '/>
             </div>
           )}
         </div>

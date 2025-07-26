@@ -1,5 +1,6 @@
 import { collection, getDoc, getDocs, doc, setDoc, addDoc, updateDoc, deleteDoc, onSnapshot, where, query } from "firebase/firestore";
-import { db } from "./config";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { db, auth } from "./config";
 
 //Interfaces de los documentos cuando se leen
 export interface DocumentFirestore {
@@ -183,3 +184,15 @@ export const queryCollection = async (
     throw e;
   }
 };
+
+export const singUp = async (email: string, password: string): Promise<any> => { 
+  try {
+    const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+    const uid = userCredential.user.uid;
+
+    return uid;
+  } catch (error) {
+    console.error("Error during sign up:", error);
+    throw error;
+  }
+}
