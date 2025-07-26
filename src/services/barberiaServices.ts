@@ -1,6 +1,7 @@
 import {
   createDocument,
-  queryCollection
+  queryCollection,
+  singUp
 } from '../firebase/firebaseServices.ts'
 import type {BarberShop } from './interface.ts'
 
@@ -13,7 +14,12 @@ export const createBarberShop = async (barberShop: BarberShop): Promise<string |
     if (!barberShop || typeof barberShop !== "object") {
       throw new Error("Datos de barbería inválidos");
     }
-    const barberShopData = createDocument('barberias', barberShop)
+
+    const uid = await singUp(barberShop.email, barberShop.password || "");
+    if (!uid) {
+      throw new Error("Error al registrar el usuario");
+    }
+    const barberShopData = createDocument('barberias', barberShop, uid)
 
     if (!barberShopData) {
       throw new Error("Error al crear la barbería");
@@ -40,6 +46,7 @@ export const getBarberShop = async (): Promise<BarberShop[]> => {
           id_barberShop: doc.docId, // Fallback to doc.id if id_barberia doesn't exist
           id_barbers: doc.id_barbers,
           name: doc.name,
+          email: doc.email,
           address: doc.address,
           phone: doc.phone,
           description: doc.description,

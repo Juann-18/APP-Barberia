@@ -17,8 +17,11 @@ export interface BarberShop {
   id_barberia?: string;
   id_barbers?: string[];
   name: string;
+  email: string;
+  password?: string;
   address: string;
   phone: string;
+  photoUrl?: string;
   description: string;
   status?: boolean;
 }

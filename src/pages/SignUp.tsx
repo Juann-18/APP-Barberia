@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { SegmentedButtons } from '../components/SegmentedButtons';
 import { FormUser  } from '../components/FormUser';
 import { FormBarber } from '../components/FormBarber';
+import { FormBarberShop } from '../components/FormBarberShop';
 
 
 export const SignUp: React.FC = () => {
@@ -28,6 +29,11 @@ export const SignUp: React.FC = () => {
         <div>
           {segmented === 'barber' && (
             <FormBarber/>
+          )}
+        </div>
+        <div>
+          {segmented === 'barbershop' && (
+            <FormBarberShop/>
           )}
         </div>
         
