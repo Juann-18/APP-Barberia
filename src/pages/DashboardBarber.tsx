@@ -6,8 +6,8 @@ import { useAuth } from '../context/AuthContext'
 
 
 export const DashboardBarber: React.FC = () => {
-  const { user } = useAuth();
-  console.log(user)
+  const { user, loading } = useAuth();
+  console.log(loading)
 
   
   return (

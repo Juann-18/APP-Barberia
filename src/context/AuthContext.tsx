@@ -58,9 +58,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         // Obtener el rol del usuario desde Firestore
         const userDoc = await getDocument(`usuarios/${currentUser.uid}`);
         setUser(userDoc);
-        console.log(userDoc)
-        if (userDoc.exists()) {
-          setUserRole(userDoc.data().role);
+        if (userDoc && userDoc.role) {
+          setUserRole(userDoc.role);
         }
       } else {
         setUser(null);
