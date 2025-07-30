@@ -19,7 +19,7 @@ export const createBarberShop = async (barberShop: BarberShop): Promise<string |
     if (!uid) {
       throw new Error("Error al registrar el usuario");
     }
-    const barberShopData = createDocument('barberias', barberShop, uid)
+    const barberShopData = createDocument('usuarios', barberShop, uid)
 
     if (!barberShopData) {
       throw new Error("Error al crear la barbería");
@@ -36,7 +36,7 @@ export const createBarberShop = async (barberShop: BarberShop): Promise<string |
 
 export const getBarberShop = async (): Promise<BarberShop[]> => {
   try {
-    const barberShopsData = await queryCollection('barberias',"status", true);
+    const barberShopsData = await queryCollection('usuarios',"status", true);
 
     // Process all barber shops (assuming you might want to handle multiple)
     const barberShops: BarberShop[] = await Promise.all(
@@ -51,6 +51,7 @@ export const getBarberShop = async (): Promise<BarberShop[]> => {
           phone: doc.phone,
           description: doc.description,
           status: doc.status,
+          role: doc.role,
         } as BarberShop;
       })
     );

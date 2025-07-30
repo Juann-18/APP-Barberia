@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { SidebarItem } from './SidebarItem';
+import PerfilUser from './PerfilUser';
 import { 
   DashboardIcon, 
   ProfileIcon, 
@@ -8,9 +9,13 @@ import {
   AppointmentsIcon 
 } from './SidebarIcons';
 
-export const Sidebar: React.FC = () => {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+interface Props{
+  name: string,
+  icon: string
+}
 
+export const Sidebar: React.FC<Props> = ({name, icon}) => {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const menuItems = [
     {
       label: "Dashboard",
@@ -75,11 +80,7 @@ export const Sidebar: React.FC = () => {
           <div className="flex flex-col gap-4">
             {/* Header del sidebar */}
             <div className="flex gap-3 items-center">
-              <div className="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10" style={{ backgroundImage: `url("https://lh3.googleusercontent.com/aida-public/AB6AXuCcSs-viypmS8UFkYFlu5jLx4jtGmaoaqxGmv0cgZDbbMifYYRdqMVOJx10w1y6KcwfjQ22O0DT46azdaP6EOupgo-oKJ9sZoX-SOvXWxyszNNWROsYry1s7UvZ37oBqh-Hl60tcKP2gOZVil1NtNh4RTQ3yErUr527IiyU6YsgAvxWo3fSgmvooYm_bysV0nWszMGi010BoRw5viltSGo8KYEq6gtlVr9qYBrUg8QPij_hISSMGZ7VKp1eFWv7ojyVYOeIdErTfy2-")` }}></div>
-              <div className="flex flex-col">
-                <h1 className="text-[#111418] text-base font-medium leading-normal">Alex</h1>
-                <p className="text-[#60758a] text-sm font-normal leading-normal">Barber</p>
-              </div>
+              <PerfilUser icon={icon} name={name} user="Barber" />
             </div>
             
             {/* Navegación */}

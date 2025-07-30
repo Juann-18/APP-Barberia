@@ -16,6 +16,7 @@ export const FormUser: React.FC = () => {
     photoUrl: '',
     faults: 0,
     status: true,
+    role: 'client'
   });
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -61,6 +62,7 @@ export const FormUser: React.FC = () => {
         photoUrl: '',
         faults: 0,
         status: true,
+        role: 'client'
       });
       setPreviewUrl(null);
       setSelectedFile(null);

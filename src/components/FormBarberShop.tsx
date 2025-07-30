@@ -16,6 +16,7 @@ export const FormBarberShop: React.FC = () => {
     photoUrl: '',
     description: '',
     status: true,
+    role: 'BarberShop'
   });
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -61,6 +62,7 @@ export const FormBarberShop: React.FC = () => {
         photoUrl: '',
         description: '',
         status: true,
+        role: 'BarberShop'
       });
       setPreviewUrl(null);
       setSelectedFile(null);

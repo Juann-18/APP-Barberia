@@ -24,6 +24,7 @@ export interface BarberShop {
   photoUrl?: string;
   description: string;
   status?: boolean;
+  role: string;
 }
 
 export interface Barber {
@@ -36,6 +37,7 @@ export interface Barber {
   password?: string;
   photoUrl?: string;
   status?: boolean;
+  role: string;
   availability?: Availability[];
 }
 
@@ -49,4 +51,16 @@ export interface User {
   photoUrl?: string;
   faults: number;
   status?: boolean;
+  role: string;
+}
+
+export interface Cita { 
+  id?: string;
+  clientId: string;
+  barberId: string;
+  barberShopId: string;
+  fecha_inicio: string
+  service: string;
+  status: string;
+  valor: string;
 }

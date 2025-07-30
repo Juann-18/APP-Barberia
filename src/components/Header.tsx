@@ -1,13 +1,27 @@
 import Logo from '../assets/Logo.jpg'
 import user from '../assets/user.jpg'
+import { useAuth } from '../context/AuthContext';
+import { useNavigate } from 'react-router-dom';
 
 export const Header = () => {
+  const { user: authUser, signOut, userRole } = useAuth();
+  const navigate = useNavigate();
+
   const handlePerfilClick = () => {
-    console.log('Perfil clicked');
+    navigate('/profile');
   }
 
   const handleLogoClick = () => {
-    console.log('Logo clicked');
+    navigate('/');
+  }
+
+  const handleLogout = async () => {
+    try {
+      await signOut();
+      navigate('/login');
+    } catch (error) {
+      console.error('Error al cerrar sesión:', error);
+    }
   }
   return (
     <header className='bg-white py-4 border-b border-gray-200'>
@@ -26,11 +40,31 @@ export const Header = () => {
               className="px-4 py-2 w-full max-w-xs rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400 shadow-sm"
             />
           </div>
-          <div className='flex items-center'>
+          <div className='flex items-center gap-4'>
+            {authUser && (
+              <div className="flex items-center gap-2">
+                <span className="text-sm text-[#60758a]">
+                  {authUser.email}
+                </span>
+                {userRole && (
+                  <span className="px-2 py-1 bg-[#f0f2f5] text-xs rounded-full text-[#111418]">
+                    {userRole}
+                  </span>
+                )}
+              </div>
+            )}
             <button 
               onClick={handlePerfilClick}>
               <img src={user} alt="usuario" className='w-auto h-16 rounded-full object-cover' />
             </button>
+            {authUser && (
+              <button
+                onClick={handleLogout}
+                className="px-4 py-2 text-sm text-[#60758a] hover:text-[#111418] transition-colors"
+              >
+                Cerrar Sesión
+              </button>
+            )}
           </div>
         </div>
       </div>

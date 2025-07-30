@@ -35,7 +35,7 @@ export const readCollection = async (ruta: string): Promise<DocumentFirestore[]>
 };
 
 // Metodo para leer un documento especifico de Firestore
-export const getDocument = async (ruta: string): Promise<DocumentFirestore | null> => {
+export const getDocument = async (ruta: string): Promise<DocumentFirestore > => {
   try {
     if (!ruta || typeof ruta !== "string") throw new Error("Ruta inválida");
 

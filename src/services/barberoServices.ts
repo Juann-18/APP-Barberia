@@ -26,7 +26,7 @@ export const createBarber = async (barber: Barber): Promise<string | undefined> 
     }
     const uid =  await singUp(barber.email, barber.password || "");
   
-    const barberData = createDocument('barberos', barber, uid)
+    const barberData = createDocument('usuarios', barber, uid)
     if (!barberData) {
       throw new Error("Error al crear el barbero");
     }
@@ -37,20 +37,20 @@ export const createBarber = async (barber: Barber): Promise<string | undefined> 
   }
 }
 
-export const getBarberById = async (id: string, ): Promise<Barber | null> => {
+export const getBarberById = async (id: string, ): Promise<Barber> => {
   try {
     if (!id) {
       throw new Error("Id de barbero invalido")
     }
 
-    const barberData = await getDocument(`barberos/${id}`); 
+    const barberData = await getDocument(`usuarios${id}`); 
 
     if (!barberData) {
       throw new Error("Barbero no encontrado");
     }
 
     // Obtener la disponibilidad del barbero
-    const availabilityData = await readCollection(`barberos/${id}/disponibilidad`);
+    const availabilityData = await readCollection(`usuarios${id}/disponibilidad`);
 
     const availability = availabilityData.map((avail) => ({
       id: avail.id ?? "", // Provide default if missing
@@ -70,6 +70,7 @@ export const getBarberById = async (id: string, ): Promise<Barber | null> => {
       availability: availability,
       phone: barberData.phone,
       status: barberData.status,
+      role: barberData.role,
       email: barberData.email ?? "", // Provide a default value if missing
     } as Barber;
       

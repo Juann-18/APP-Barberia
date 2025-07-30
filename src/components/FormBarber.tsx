@@ -15,6 +15,7 @@ export const FormBarber: React.FC = () => {
     password: '',
     photoUrl: '',
     status: true,
+    role: 'barber'
   });
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -59,6 +60,7 @@ export const FormBarber: React.FC = () => {
         password: '',
         photoUrl: '',
         status: true,
+        role: 'baSrber'
       });
       setPreviewUrl(null);
       setSelectedFile(null);
