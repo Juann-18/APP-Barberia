@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import type { Barber } from '../services/interface';
 import { FormInput } from '../components/FormInput';
 import { createBarber } from '../services/barberoServices';
@@ -17,6 +18,8 @@ export const FormBarber: React.FC = () => {
     status: true,
     role: 'barber'
   });
+
+  const navigate = useNavigate();
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
@@ -64,6 +67,7 @@ export const FormBarber: React.FC = () => {
       });
       setPreviewUrl(null);
       setSelectedFile(null);
+      navigate('/login');
 
       
     } catch (error) {

@@ -81,7 +81,7 @@ export const Login: React.FC = () => {
           <p className="text-[#60758a] text-sm">
             ¿No tienes una cuenta?{' '}
             <button
-              onClick={() => navigate('/signup')}
+              onClick={() => navigate('/register')}
               className="text-[#111418] font-medium hover:underline"
             >
               Regístrate aquí

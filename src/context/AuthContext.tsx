@@ -27,9 +27,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
       // Verificar el rol del usuario en Firestore
       const userDoc = await getDocument(`usuarios/${uid}`);
-      if (userDoc.exists()) {
-        const userData = userDoc.data();
-        setUserRole(userData.role); // Asume que el campo en Firestore es "role"
+      if (userDoc && userDoc.role) {
+        setUserRole(userDoc.role); // Asume que el campo en Firestore es "role"
       } else {
         throw new Error("Usuario no encontrado en la base de datos");
       }

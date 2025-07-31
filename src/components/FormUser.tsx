@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import type { User } from '../services/interface';
 import { FormInput } from '../components/FormInput';
 import { registerUser } from '../services/auth';
@@ -18,7 +19,8 @@ export const FormUser: React.FC = () => {
     status: true,
     role: 'client'
   });
-
+  const navigate = useNavigate();
+  
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
       const file = e.target.files[0];
@@ -66,7 +68,7 @@ export const FormUser: React.FC = () => {
       });
       setPreviewUrl(null);
       setSelectedFile(null);
-
+      navigate('/login');
       
     } catch (error) {
       console.error("Error uploading image or registering user:", error);
